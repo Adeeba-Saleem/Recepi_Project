@@ -1,0 +1,32 @@
+<div class="row" >
+    <div class="col-xs-12">
+      <form  (ngSubmit)="AddShoppingList(f)" #f="ngForm">
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" ngModel required #name="ngModel">
+            <span *ngIf="!name.valid && name.touched" style="color: red;">Enter the name </span>
+          </div>
+          <div class="col-sm-2 form-group">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" class="form-control" ngModel required #amount="ngModel" 
+            pattern="^[1-9]+[0-9]*$">
+            <!--it's allow any number greater than 0-->
+            <span *ngIf="!amount.valid && amount.touched" style="color: red;">enter proper amount</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid" *ngIf="!editMode">Add</button>
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid" *ngIf="editMode">update</button>
+            <button class="btn btn-danger" type="button" *ngIf="editMode" (click)="deleteItem(f)">Delete</button>
+            <button class="btn btn-primary" type="button" (click)="reset(f)">Clear</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  
+  
